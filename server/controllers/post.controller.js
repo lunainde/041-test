@@ -4,8 +4,7 @@ const Post = require("../models/Post.model");
 // Function to create a new post
 exports.createPost = async (req, res, next) => {
   try {
-    const { imgUrl, title, postTag, content } = req.body;
-    const author = req.user._id; // is user authenticated?
+    const { imgUrl, title, postTag, content, author } = req.body;
     const newPost = await Post.create({ imgUrl, title, postTag, content, author });
     res.status(201).json(newPost);
   } catch (error) {
