@@ -6,7 +6,7 @@ const isAuthenticated = jwt({
   secret: process.env.TOKEN_SECRET,
   algorithms: ["HS256"],
   requestProperty: "payload",
-  getToken: getTokenFromHeaders,
+  getToken: getTokenFromHeaders, //postman
 });
 
 // Function used to extract the JWT token from the request's 'Authorization' Headers
@@ -26,7 +26,7 @@ function getTokenFromHeaders(req) {
 // Middleware to check if the user owns the resource
 const isUserOwner = async (req, res, next) => {
   const userId = req.user._id;
-  const resourceId = req.params.userId; // Assuming the user ID is passed as a parameter
+  const resourceId = req.params.userId; // user ID is passed as a parameter
   if (userId !== resourceId) {
     return res.status(403).json({ message: "Unauthorized" });
   }

@@ -1,14 +1,16 @@
 //server/models/User.model.js
 const { Schema, model } = require("mongoose");
 
-// TODO: Please make sure you edit the User model to whatever makes sense in this case
+// TODO:
 const userSchema = new Schema(
   {
     imgUrl: String,
-    venture: String,
-    ventureUrl: String,
-    tag: String,
-    description: String,
+    siteUrl: String,
+    headline: String,
+    about: {
+      type: String,
+      maxlength: [140, "Title cannot exceed 140 characters."],
+    },
     country: String,
     email: {
       type: String,
@@ -25,13 +27,30 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
+    category: {
+      type: String,
+      required: [true, "Category is required."],
+      enum: ["investor", "startup", "expert", "organization", "journalist"],
+    },
+    tags: {
+      type: [String],
+      required: [true, "Tag is required."],
+      enum: [
+        "building",
+        "carbon",
+        "energy",
+        "food",
+        "greentech",
+        "investment",
+        "nature-based",
+        "refi",
+        "transport",
+      ],
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }
 );
-
-const User = model("User", userSchema);
-
-module.exports = User;
+module.exports = model("User", userSchema);

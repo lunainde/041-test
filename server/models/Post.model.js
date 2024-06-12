@@ -1,7 +1,5 @@
 //server/models/Post.model.js
-
-const mongoose = require("mongoose");
-const { Schema, model } = mongoose;
+const { Schema, model } = require("mongoose");
 
 const postSchema = new Schema(
   {
@@ -9,22 +7,32 @@ const postSchema = new Schema(
     title: {
       type: String,
       required: [true, "Title is required."],
-      maxlength: [150, "Title cannot exceed 150 characters."],
+      maxlength: [140, "Title cannot exceed 150 characters."],
     },
-    postTag: {
-      type: String,
+    tags: {
+      type: [String],
       required: [true, "Tag is required."],
+      enum: [
+        "building",
+        "carbon",
+        "energy",
+        "food",
+        "greentech",
+        "investment",
+        "refi",
+        "transport",
+      ],
     },
     content: {
       type: String,
       required: [true, "Content is required."],
       maxlength: [3000, "Content cannot exceed 3000 characters."],
     },
-    author: {
+    user: {
       type: Schema.Types.ObjectId,
       ref: "User",
-      required: true
-    }
+      required: true,
+    },
   },
   {
     timestamps: true,

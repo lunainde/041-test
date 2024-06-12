@@ -1,46 +1,69 @@
-//client/src/pages/SignupPage
-import "./SignupPage.css";
-import { useState } from "react";
+import React, { useState } from "react";
+import {
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Checkbox,
+  ListItemText,
+  OutlinedInput,
+  Avatar,
+} from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
+import "./SignupPage.css";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [tags, setTags] = useState([]);
+  const [siteUrl, setSiteUrl] = useState("");
+  const [headline, setHeadline] = useState("");
+  const [about, setAbout] = useState("");
+  const [country, setCountry] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
-
   const navigate = useNavigate();
 
   const handleEmail = (e) => setEmail(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
   const handleName = (e) => setName(e.target.value);
+  const handleCategory = (e) => setCategory(e.target.value);
+  const handleTags = (e) => {
+    const value = e.target.value;
+    setTags(typeof value === "string" ? value.split(",") : value);
+  };
+  const handleSiteUrl = (e) => setSiteUrl(e.target.value);
+  const handleHeadline = (e) => setHeadline(e.target.value);
+  const handleAbout = (e) => setAbout(e.target.value);
+  const handleCountry = (e) => setCountry(e.target.value);
+  const handleImgUrl = (e) => setImgUrl(e.target.value);
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    // Create an object representing the request body
-    const requestBody = { email, password, name };
+    const requestBody = {
+      email,
+      password,
+      name,
+      category,
+      tags,
+      siteUrl,
+      headline,
+      about,
+      country,
+      imgUrl,
+    };
 
-    // Send a request to the server using axios
-    /* 
-    const authToken = localStorage.getItem("authToken");
-    axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/auth/signup`, 
-      requestBody, 
-      { headers: { Authorization: `Bearer ${authToken}` },
-    })
-    .then((response) => {})
-    */
-
-    // Or using a service
     authService
       .signup(requestBody)
-      .then((response) => {
-        // If the POST request is successful redirect to the login page
+      .then(() => {
         navigate("/login");
       })
       .catch((error) => {
-        // If the request resolves with an error, set the error message in the state
         const errorDescription = error.response.data.message;
         setErrorMessage(errorDescription);
       });
@@ -48,30 +71,147 @@ function SignupPage() {
 
   return (
     <div className="SignupPage">
-      <h1>Sign Up</h1>
-
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <label>Name:</label>
-        <input type="text" name="name" value={name} onChange={handleName} />
-
-        <button type="submit">Sign Up</button>
-      </form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Already have account?</p>
-      <Link to={"/login"}> Login</Link>
+      <div className="left-column">
+        <Avatar className="user-avatar" />
+        <h1>Happy to have you here!</h1>
+        <p>Let's join forces for a better tomorrow.</p>
+      </div>
+      <div className="signup-container">
+        <div className="right-column">
+          <form onSubmit={handleSignupSubmit} className="signup-form">
+            <TextField
+              label="Startup Name or Full Name"
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleName}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <FormControl fullWidth margin="normal" variant="outlined">
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={category}
+                onChange={handleCategory}
+                label="Category"
+                name="category"
+              >
+                <MenuItem value="investor">Investor</MenuItem>
+                <MenuItem value="startup">Startup</MenuItem>
+                <MenuItem value="expert">Expert</MenuItem>
+                <MenuItem value="organization">Organization</MenuItem>
+                <MenuItem value="journalist">Journalist</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl fullWidth margin="normal" variant="outlined">
+              <InputLabel>Tags</InputLabel>
+              <Select
+                multiple
+                value={tags}
+                onChange={handleTags}
+                name="tags"
+                input={<OutlinedInput label="Tags" />}
+                renderValue={(selected) => selected.join(", ")}
+              >
+                {[
+                  "building",
+                  "carbon",
+                  "energy",
+                  "food",
+                  "greentech",
+                  "investment",
+                  "nature-based",
+                  "refi",
+                  "transport",
+                ].map((tag) => (
+                  <MenuItem key={tag} value={tag}>
+                    <Checkbox checked={tags.indexOf(tag) > -1} />
+                    <ListItemText primary={tag} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <TextField
+              label="Website"
+              type="url"
+              name="siteUrl"
+              value={siteUrl}
+              onChange={handleSiteUrl}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              label="Headline"
+              type="text"
+              name="headline"
+              value={headline}
+              onChange={handleHeadline}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              label="About"
+              type="text"
+              name="about"
+              value={about}
+              onChange={handleAbout}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+              inputProps={{ maxLength: 140 }}
+            />
+            <TextField
+              label="Country"
+              type="text"
+              name="country"
+              value={country}
+              onChange={handleCountry}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              label="Email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              label="Password"
+              type="password"
+              name="password"
+              value={password}
+              onChange={handlePassword}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <TextField
+              label="Profile Image"
+              type="url"
+              name="imgUrl"
+              value={imgUrl}
+              onChange={handleImgUrl}
+              fullWidth
+              margin="normal"
+              variant="outlined"
+            />
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Sign Up
+            </Button>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <p>Already have an account?</p>
+            <Link to="/login">LOGIN</Link>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,40 +1,47 @@
 //server/controllers/post.controller.js
 const Post = require("../models/Post.model");
 
-// Function to create a new post
+//CREATE/POST a new post
 exports.createPost = async (req, res, next) => {
   try {
-    const { imgUrl, title, postTag, content, author } = req.body;
-    const newPost = await Post.create({ imgUrl, title, postTag, content, author });
+    const { imgUrl, title, tags, content, user } = req.body;
+    const newPost = await Post.create({
+      imgUrl,
+      title,
+      tags,
+      content,
+      user,
+    });
     res.status(201).json(newPost);
   } catch (error) {
     next(error);
   }
 };
-
-// Function to get all posts
+//GET ALL posts
 exports.getAllPosts = async (req, res, next) => {
   try {
-    const posts = await Post.find().populate("author", "imgUrl venture tag description");
+    const posts = await Post.find().populate("user");
     res.status(200).json(posts);
   } catch (error) {
     next(error);
   }
 };
-
-// Function to update a post
+// UPDATE a post
 exports.updatePost = async (req, res, next) => {
   try {
     const postId = req.params.postId;
-    const { imgUrl, title, postTag, content } = req.body;
-    const updatedPost = await Post.findByIdAndUpdate(postId, { imgUrl, title, postTag, content }, { new: true });
+    const { imgUrl, title, tag, content } = req.body;
+    const updatedPost = await Post.findByIdAndUpdate(
+      postId,
+      { imgUrl, title, tag, content },
+      { new: true }
+    );
     res.status(200).json(updatedPost);
   } catch (error) {
     next(error);
   }
 };
-
-// Function to delete a post
+//DELETE a post
 exports.deletePost = async (req, res, next) => {
   try {
     const postId = req.params.postId;

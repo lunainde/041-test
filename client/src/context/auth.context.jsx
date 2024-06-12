@@ -33,12 +33,14 @@ function AuthProviderWrapper(props) {
       authService
         .verify()
         .then((response) => {
+          console.log("Diogo");
           // If the server verifies that JWT token is valid  ✅
           const user = response.data;
           // Update state variables
           setIsLoggedIn(true);
           setIsLoading(false);
           setUser(user);
+          console.warn(user);
         })
         .catch((error) => {
           // If the server sends an error response (invalid token) ❌

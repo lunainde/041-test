@@ -1,3 +1,5 @@
+//client/src/pages/PostsPage/PostsPage.jsx
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./PostsPage.css";
@@ -33,7 +35,7 @@ const PostsPage = () => {
       <h1>All Posts</h1>
       <div className="posts-list">
         {posts.map((post) => (
-          <PostCard post={post} />
+          <PostCard key={post._id} post={post} />
         ))}
       </div>
     </div>

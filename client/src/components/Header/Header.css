@@ -1,0 +1,62 @@
+/* Navbar.css */
+.navbar {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1200px;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+  }
+
+  .navbar-container {
+    width: 100%;
+  }
+  
+  .divider {
+    height: 1px;
+    background-color: #222222; 
+    width: 100%;
+  }
+
+  .header-container {
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .breadcrumbs-container {
+    display: flex;
+    padding: 16px 0px;
+    max-width: 1200px;
+  }
+  
+/* ------------------AVATAR-------------------------- */
+  /* client/src/components/Header/AvatarMenu.css */
+.loginButton {
+  width: 80px; 
+  height: 80px; 
+  background-color: var(--mui-palette-secondary-main); 
+  color: black; 
+  border: 1px solid black; 
+  border-radius: 0; 
+  font-size: 16px; 
+  text-transform: none; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+}
+
+.avatarButton {
+  width: 80px !important; 
+  height: 80px !important;
+  border: 1px solid black; 
+  border-radius: 0 !important; 
+}
+
+.menuPaper {
+  box-shadow: none !important;
+}
+
+  
+
+  

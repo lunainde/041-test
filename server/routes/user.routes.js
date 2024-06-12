@@ -6,6 +6,17 @@ const User = require("../models/User.model");
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 const saltRounds = 10;
 
+
+// //GET ALL USERS
+// router.get("/users", isAuthenticated, async (req, res, next) => {
+//     try {
+//       const users = await User.find().select("-password"); // Exclude passwords
+//       res.status(200).json(users);
+//     } catch (error) {
+//       next(error);
+//     }
+//   });
+
 // POST /auth/signup  - Creates a new user in the database
 router.post("/signup", (req, res, next) => {
     const { email, password, name } = req.body;
@@ -16,14 +27,14 @@ router.post("/signup", (req, res, next) => {
         return;
     }
 
-    // This regular expression check that the email is of a valid format
+    // Check that the email is of a valid format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!emailRegex.test(email)) {
         res.status(400).json({ message: "Provide a valid email address." });
         return;
     }
 
-    // This regular expression checks password for special characters and minimum length
+    // Checks password for special characters and minimum length
     const passwordRegex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!passwordRegex.test(password)) {
         res.status(400).json({

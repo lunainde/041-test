@@ -5,20 +5,44 @@ const router = express.Router();
 const bcrypt = require("bcrypt");
 //Handles password encryption
 const jwt = require("jsonwebtoken");
-// Require the User model in order to interact with the database
+// Require the USER MODEL in order to interact with the database
 const User = require("../models/User.model");
 // Require necessary (isAuthenticated) middleware in order to control access to specific routes
 const { isAuthenticated } = require("../middleware/jwt.middleware.js");
 // How many rounds should bcrypt run the salt (default - 10 rounds)
 const saltRounds = 10;
 
-// POST /auth/signup  - Creates a new user in the database
+// POST/CREATE signup  - Creates a new user in the database
 router.post("/signup", (req, res, next) => {
-  const { email, password, name } = req.body;
+  const {
+    email,
+    category,
+    tags,
+    siteUrl,
+    about,
+    country,
+    imgUrl,
+    headline,
+    password,
+    name,
+  } = req.body;
 
   // Check if email or password or name are provided as empty strings
-  if (email === "" || password === "" || name === "") {
-    res.status(400).json({ message: "Please provide email, password, and name" });
+  if (
+    email === "" ||
+    password === "" ||
+    name === "" ||
+    category === "" ||
+    tags === "" ||
+    siteUrl === "" ||
+    about === "" ||
+    country === "" ||
+    imgUrl === "" ||
+    headline === ""
+  ) {
+    res
+      .status(400)
+      .json({ message: "Please provide email, password, and name" });
     return;
   }
 
@@ -38,7 +62,7 @@ router.post("/signup", (req, res, next) => {
     return;
   }
 
-  // Check the users collection if a user with the same email already exists
+  // Check for DUPLICATED email
   User.findOne({ email })
     .then((foundUser) => {
       // If the user with the same email already exists, send an error response
@@ -51,11 +75,22 @@ router.post("/signup", (req, res, next) => {
       const hashedPassword = bcrypt.hashSync(password, salt);
       // Create the new user in the database
       // We return a pending promise, which allows us to chain another `then`
-      return User.create({ email, password: hashedPassword, name });
+
+      return User.create({
+        email,
+        category,
+        tags,
+        siteUrl,
+        about,
+        country,
+        imgUrl,
+        headline,
+        password: hashedPassword,
+        name,
+      });
     })
     .then((createdUser) => {
-      // Deconstruct the newly created user object to omit the password
-      // We should never expose passwords publicly
+      // Deconstruct the newly created user object to omit the password => never expose passwords publicly
       const { email, name, _id } = createdUser;
       // Create a new object that doesn't expose the password
       const user = { email, name, _id };
@@ -65,7 +100,7 @@ router.post("/signup", (req, res, next) => {
     .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
 });
 
-// POST  /auth/login - Verifies email and password and returns a JWT
+// POST login - Verifies email and password and returns a JWT
 router.post("/login", (req, res, next) => {
   const { email, password } = req.body;
 
@@ -79,10 +114,13 @@ router.post("/login", (req, res, next) => {
   User.findOne({ email })
     .then((foundUser) => {
       if (!foundUser) {
+        console.log("what");
         // If the user is not found, send an error response
         res.status(401).json({ message: "User not found." });
         return;
       }
+
+      console.log(foundUser.password);
 
       // Compare the provided password with the one saved in the database
       const passwordCorrect = bcrypt.compareSync(password, foundUser.password);
@@ -111,6 +149,7 @@ router.post("/login", (req, res, next) => {
 
 // GET  /auth/verify  -  Used to verify JWT stored on the client
 router.get("/verify", isAuthenticated, (req, res, next) => {
+  console.log("diogo");
   // If JWT token is valid the payload gets decoded by the
   // isAuthenticated middleware and is made available on `req.payload`
   // console.log(`req.payload`, req.payload);
