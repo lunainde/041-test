@@ -59,6 +59,14 @@ const theme = createTheme({
         },
       },
     },
+    MuiDivider: {
+      styleOverrides: {
+        root: {
+          borderColor: '#222222', 
+          borderWidth: '1px', 
+        },
+      },
+    },
   },
 });
 

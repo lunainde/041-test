@@ -1,9 +1,8 @@
 //client/src/pages/ProfilePage
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/auth.context';
-import UserCard from '../../components/UserCard/UserCard';
+import UserCard from '../../components/Cards/UserCard';
 import "./ProfilePage.css";
-
 function ProfilePage() {
   const { user } = useContext(AuthContext);
   return (
@@ -13,5 +12,4 @@ function ProfilePage() {
     </div>
   );
 }
-
 export default ProfilePage;

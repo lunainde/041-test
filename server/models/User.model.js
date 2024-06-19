@@ -7,9 +7,10 @@ const userSchema = new Schema(
     imgUrl: String,
     siteUrl: String,
     headline: String,
+    country: String,
     about: {
       type: String,
-      maxlength: [140, "Title cannot exceed 140 characters."],
+      maxlength: [140, "About cannot exceed 140 characters."],
     },
     country: String,
     email: {

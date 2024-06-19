@@ -1,13 +1,13 @@
-import React from 'react';
-import Navbar from '../Header/Navbar'; 
-import BreadcrumbsWithIcon from '../Header/Breadcrumbs'; 
+import React from "react";
+import Navbar from "../Header/Navbar";
+import BreadcrumbsWithIcon from "../Header/Breadcrumbs";
 // import './Header.css';
 
 const Header = ({ pageTitle }) => {
   return (
     <header className="header-container">
       <Navbar />
-      <BreadcrumbsWithIcon className='breadcrumbs-container'/>
+      <BreadcrumbsWithIcon />
       <div className="page-title">
         <h1>{pageTitle}</h1>
       </div>

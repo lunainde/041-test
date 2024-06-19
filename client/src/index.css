@@ -1,4 +1,4 @@
-
+/* client/src/index.css */
 @import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
 body {
@@ -24,4 +24,10 @@ body {
   border: 1px solid black; 
   border-radius: 0 !important;
   margin-right: 1rem;
+}
+
+.divider {
+  height: 1px;
+  background-color: #222222; 
+  width: 100%;
 }

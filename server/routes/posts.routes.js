@@ -8,6 +8,12 @@ const { isAuthenticated } = require("../middleware/jwt.middleware");
 // GET "/api/posts" => Route to list all available posts
 router.get("/", postController.getAllPosts);
 
+// GET "/api/posts/recent-posts" => Route to get the last 3 posts
+router.get("/recent", postController.getRecentPosts);
+
+// GET "/api/posts/:postId" => Route to get a specific post by ID
+router.get("/:postId", postController.getPostById);
+
 // POST '/api/posts' => for saving a new post in the database
 router.post("/", isAuthenticated, postController.createPost);
 

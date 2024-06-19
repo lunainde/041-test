@@ -1,3 +1,5 @@
+//client/src/components/Header/Breadcrumbs.jsx
+
 import React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
@@ -36,6 +38,7 @@ function BreadcrumbsWithIcon() {
           </Link>
         );
       })}
+      <div className="divider" />
     </Breadcrumbs>
   );
 }

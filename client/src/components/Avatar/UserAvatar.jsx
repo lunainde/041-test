@@ -10,14 +10,14 @@ const UserAvatar = () => {
   return (
     <Avatar
       src={isLoggedIn && user ? user.imgUrl : ""}
-      alt={isLoggedIn && user ? user.name : "avatar"}
+      alt={isLoggedIn && user ? user.name : ""}
       sx={{
         width: "80px !important",
         height: "80px !important",
         border: "1px solid black",
         borderRadius: "0 !important",
         marginRight: "1rem",
-        // backgroundColor: isLoggedIn ? "transparent" : "gray", // Default background color for logged out state
+        backgroundColor: isLoggedIn ? "transparent" : "gray", // Default background color for logged out state
       }}
     >
       {!isLoggedIn && <PersonIcon />}{" "}
@@ -25,5 +25,4 @@ const UserAvatar = () => {
     </Avatar>
   );
 };
-
 export default UserAvatar;

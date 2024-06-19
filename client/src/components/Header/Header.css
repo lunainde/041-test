@@ -11,24 +11,30 @@
   .navbar-container {
     width: 100%;
   }
-  
-  .divider {
-    height: 1px;
-    background-color: #222222; 
-    width: 100%;
-  }
 
   .header-container {
     margin: 0 auto;
     align-items: center;
+    justify-content: center;
   }
 
+  /* ------------------/breadcrumbs-------------------------- */
   .breadcrumbs-container {
+    max-width: 1200px !important;
+    padding: 1rem;
     display: flex;
-    padding: 16px 0px;
-    max-width: 1200px;
+    justify-self: center;
   }
-  
+
+  .css-1yav01k-MuiTypography-root-MuiBreadcrumbs-root {
+    margin: 0 auto !important;
+}
+
+.css-1u10cx5-MuiTypography-root {
+  margin: 0;
+  font-family: "Play", sans-serif !important;
+}
+
 /* ------------------AVATAR-------------------------- */
   /* client/src/components/Header/AvatarMenu.css */
 .loginButton {

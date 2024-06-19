@@ -11,6 +11,17 @@ exports.getUserById = async (userId) => {
   }
 };
 
+//GET LAST 3 RECENT USERS- STARTUP
+exports.getRecentStartups = async (req, res, next) => {
+  try {
+    const users = await User.find({ category: "Startup" })
+      .sort({ createdAt: -1 })
+      .limit(3);
+    res.status(200).json(users);
+  } catch (error) {
+    next(error);
+  }
+};
 
 // exports.getUserById = async (req, res, next) => {
 //   try {
@@ -20,5 +31,3 @@ exports.getUserById = async (userId) => {
 //     next(err);
 //   }
 // };
-
-

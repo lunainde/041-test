@@ -15,7 +15,6 @@ class AuthService {
       if (storedToken) {
         config.headers = { Authorization: `Bearer ${storedToken}` };
       }
-
       return config;
     });
   }
@@ -36,6 +35,11 @@ class AuthService {
     return this.api.get("/auth/verify");
     // same as
     // return axios.post("http://localhost:5005/auth/verify");
+  };
+
+  // Method to fetch users
+  fetchUsers = () => {
+    return this.api.get("/api/users");
   };
 }
 

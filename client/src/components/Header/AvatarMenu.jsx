@@ -1,6 +1,14 @@
-//client/src/components/Profile/AvatarMenu.jsx
-import React, { useState, useContext } from "react";
-import { Avatar, IconButton, Menu, MenuItem, Typography, Divider, ListItemIcon } from "@mui/material";
+//client/src/components/Header/AvatarMenu.jsx
+import React, { useState, useContext, useEffect } from "react";
+import {
+  Avatar,
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+  Divider,
+  ListItemIcon,
+} from "@mui/material";
 import { Link } from "react-router-dom";
 import SquareIcon from "@mui/icons-material/Square";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -29,12 +37,21 @@ const AvatarMenu = () => {
     handleClose();
   };
 
+  useEffect(() => {
+    if (!user) {
+      console.log("user doesn't exist");
+    } else {
+      console.log("USERDATA", user);
+    }
+  }, [user]);
+
   return (
-    <>
+    <div>
       <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
-        <Avatar className="avatarButton"
-          src={user ? user.imgUrl : " "}
-          alt={user ? user.name : "User Avatar"}
+        <Avatar
+          className="avatarButton"
+          src={user ? user.imgUrl : "/NoUser.jpg"}
+          alt={user ? user.name : "Default User"}
         />
       </IconButton>
       <Menu
@@ -46,7 +63,8 @@ const AvatarMenu = () => {
           elevation: 0,
           sx: {
             overflow: "visible",
-            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            // filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            border: "1px solid #222222",
             mt: 1.5,
             "& .MuiAvatar-root": {
               width: 32,
@@ -72,7 +90,7 @@ const AvatarMenu = () => {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         {isLoggedIn ? (
-          <>
+          <div>
             <Typography variant="body2" color="text.secondary" sx={{ ml: 2 }}>
               {user.name}
             </Typography>
@@ -98,9 +116,9 @@ const AvatarMenu = () => {
               </ListItemIcon>
               Logout
             </MenuItem>
-          </>
+          </div>
         ) : (
-          <>
+          <div>
             <MenuItem component={Link} to="/signup">
               <ListItemIcon>
                 <LockOpenIcon fontSize="small" />
@@ -113,7 +131,7 @@ const AvatarMenu = () => {
               </ListItemIcon>
               Login
             </MenuItem>
-          </>
+          </div>
         )}
         <MenuItem component={Link} to="/settings">
           <ListItemIcon>
@@ -122,7 +140,7 @@ const AvatarMenu = () => {
           Settings
         </MenuItem>
       </Menu>
-    </>
+    </div>
   );
 };
 

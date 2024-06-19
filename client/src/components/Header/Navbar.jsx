@@ -1,6 +1,8 @@
+//client/components/Header/Navbar.jsx
+
 import React from "react";
 import "./Header.css";
-import Menu from "../Menu/Menu";
+import Menu from "./Menu";
 import AvatarMenu from "./AvatarMenu";
 
 const Navbar = () => {

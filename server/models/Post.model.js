@@ -1,6 +1,5 @@
 //server/models/Post.model.js
 const { Schema, model } = require("mongoose");
-
 const postSchema = new Schema(
   {
     imgUrl: String,
@@ -13,14 +12,15 @@ const postSchema = new Schema(
       type: [String],
       required: [true, "Tag is required."],
       enum: [
-        "building",
-        "carbon",
-        "energy",
-        "food",
-        "greentech",
-        "investment",
-        "refi",
-        "transport",
+        "Building",
+        "Carbon",
+        "Energy",
+        "Food",
+        "Greentech",
+        "Investment",
+        "ReFi",
+        "Transport",
+        "Reform",
       ],
     },
     content: {
@@ -38,5 +38,4 @@ const postSchema = new Schema(
     timestamps: true,
   }
 );
-
 module.exports = model("Post", postSchema);

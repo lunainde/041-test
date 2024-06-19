@@ -1,3 +1,4 @@
+//client/src/pages/PostsPage/NewPost.jsx
 import React, { useState, useContext } from "react";
 import {
   TextField,
@@ -13,7 +14,7 @@ import {
   Box,
 } from "@mui/material";
 import { AuthContext } from "../../context/auth.context";
-import UserCard from "../../components/UserCard/UserCard";
+import UserCard from "../../components/Cards/UserCard";
 import axios from "axios";
 import "./NewPost.css";
 import { useNavigate } from "react-router-dom";
@@ -106,14 +107,15 @@ const NewPost = () => {
             renderValue={(selected) => selected.join(", ")}
           >
             {[
-              "building",
-              "carbon",
-              "energy",
-              "food",
-              "greentech",
-              "investment",
-              "refi",
-              "transport",
+              "Building",
+              "Carbon",
+              "Energy",
+              "Food",
+              "Greentech",
+              "Investment",
+              "ReFi",
+              "Reform",
+              "Transport",
             ].map((tag) => (
               <MenuItem key={tag} value={tag}>
                 <Checkbox checked={tags.indexOf(tag) > -1} />

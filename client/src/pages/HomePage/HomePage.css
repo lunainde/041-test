@@ -1,0 +1,34 @@
+/* client/src/pages/HomePage/HomePage.css */
+.title-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center !important;
+    padding: 48px 16px;
+}
+.title-container a {
+    text-decoration: none;
+    color: #008100; 
+    font-weight: bold;
+  }
+  
+  .title-container a:hover {
+    text-decoration: underline; 
+  }
+.title {
+    font-size: 6rem !important;
+    text-align: left;
+    padding-bottom: 48px;
+}
+.left {
+    text-align: left;
+}
+.subtitle {
+    font-size: 3rem;
+    color: #09DD15;
+}
+.inline-text {
+    display: flex;
+    text-align: left;
+    align-items: baseline;
+}
+

@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import PostCard from "../../components/Cards/PostCard";
 import "./PostsPage.css";
-import PostCard from "../../components/PostCard/PostCard";
 
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
@@ -14,7 +14,12 @@ const PostsPage = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/posts`
+          `${process.env.REACT_APP_SERVER_URL}/api/posts`,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("authToken"),
+            },
+          }
         );
         setPosts(response.data);
         setLoading(false);
@@ -32,7 +37,7 @@ const PostsPage = () => {
 
   return (
     <div className="posts-page">
-      <h1>All Posts</h1>
+      <h1>INSIGHTS</h1>
       <div className="posts-list">
         {posts.map((post) => (
           <PostCard key={post._id} post={post} />
