@@ -18,16 +18,13 @@ body {
   font-style: normal;
 }
 
-.user-avatar {
-  width: 80px !important; 
-  height: 80px !important;
-  border: 1px solid black; 
-  border-radius: 0 !important;
-  margin-right: 1rem;
-}
-
 .divider {
   height: 1px;
   background-color: #222222; 
   width: 100%;
+}
+
+.page-title {
+  font-size: 6rem !important;
+  text-align: left;
 }

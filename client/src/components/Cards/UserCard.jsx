@@ -1,6 +1,6 @@
 //client/src/components/UserCard/UserCard.jsx
 import React from 'react';
-import { Typography, Box, Avatar } from '@mui/material';
+import { Typography, Box, Avatar, Link } from '@mui/material';
 import './UserCard.css';
 
 const UserCard = ({ user }) => {
@@ -23,7 +23,10 @@ const UserCard = ({ user }) => {
       />
 
       <Box className="user-info">
-        <Typography variant="h6">{user.name}</Typography>
+        {/* <Typography variant="h6">{user.name}</Typography> */}
+        <Link href={user.siteUrl} target="_blank" rel="noopener noreferrer" underline="none">
+            <Typography variant="h6">{user.name}</Typography>
+        </Link>
         <Typography variant="body2" color="textSecondary">{user.headline}</Typography>
       </Box>
     </Box>

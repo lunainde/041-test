@@ -18,9 +18,11 @@ router.get("/:postId", postController.getPostById);
 router.post("/", isAuthenticated, postController.createPost);
 
 // PUT '/api/posts/:postId' => for updating a post
+// router.put("/:postId", isAuthenticated, isPostOwner, postController.updatePost);
 router.put("/:postId", isAuthenticated, postController.updatePost);
 
 // DELETE '/api/posts/:postId' => for deleting a post
+// router.delete("/:postId", isAuthenticated, isPostOwner, postController.deletePost);
 router.delete("/:postId", isAuthenticated, postController.deletePost);
 
 // POST '/api/posts/upload' => for uploading image to Cloudinary (if needed)

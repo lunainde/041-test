@@ -43,17 +43,28 @@ function HomePage() {
     fetchRecentStartups();
   }, []);
 
+  const playSound = () => {
+    const audio = new Audio('/tweet.wav');
+    audio.play();
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div>
       <div className= "left title-container">
+        {/* <h1 className="title">
+          From the red carpet of fame to the green carpet of change
+        </h1> */}
         <h1 className="title">
           From the red carpet of fame to the green carpet of change
+          <button onClick={playSound} className="bird-button">
+            <img src="bird2.png" alt="Bird" className="bird-image" />
+          </button>
         </h1>
         <div className="inline-text">
-        <h1>LET IT TWEET HERE . . .</h1>
+          <h1 className="typing-animation">LET IT TWEET HERE . . .</h1>
         <img src="bird.png" alt="Bird" style={{ marginLeft: '10px', verticalAlign: 'middle', width: '50px', height: '50px' }} />
         </div>
       </div>
@@ -82,17 +93,15 @@ function HomePage() {
           <h2 className="subtitle">STARTUPS_</h2>
           <h2> in the making for a better tomorrow</h2>
         </div>
-
         <p>. . . and great opportunities for investments that matter</p>
-
         <div className="posts-list">
           {recentStartups.map((user) => (
-            <StartupCard key={user._id} user={user} />
+            <StartupCard key={user._id} user={user}/>
           ))}
         </div>
       </div>
 
-      <div className="divider" />
+      <div className="divider" style={{ marginTop: '48px' }}  />
 
       <div className="left title-container">
         <div className="inline-text">
@@ -107,7 +116,6 @@ function HomePage() {
           ))}
         </div>
       </div>
-      {/* <div className="divider" /> */}
     </div>
   );
 }

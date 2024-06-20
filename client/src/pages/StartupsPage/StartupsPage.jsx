@@ -5,6 +5,7 @@ import StartupCard from '../../components/Cards/StartupCard';
 // import authService from '../../services/auth.service';
 import "./StartupsPage.css";
 import axios from 'axios';
+// import { responsiveProperty } from '@mui/material/styles/cssUtils';
 
 function StartupsPage() {
   const [users, setUsers] = useState([]);
@@ -15,8 +16,9 @@ function StartupsPage() {
     const fetchUsers = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/users`);
-        // const response = await authService.fetchUsers();
-        setUsers(response.data);
+        const startups = response.data.filter(user => user.category === "Startup")
+        
+        setUsers(startups);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -31,8 +33,8 @@ function StartupsPage() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="posts-page">
-      <h1>STARTUPS</h1>
+    <div className="page-header center">
+      <h1 className="page-title ">STARTUPS_</h1>
       <div className="posts-list">
         {users.map((user) => (
           <StartupCard key={user._id} user={user} />

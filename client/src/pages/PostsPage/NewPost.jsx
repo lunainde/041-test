@@ -1,18 +1,6 @@
 //client/src/pages/PostsPage/NewPost.jsx
 import React, { useState, useContext } from "react";
-import {
-  TextField,
-  Button,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
-  Checkbox,
-  ListItemText,
-  OutlinedInput,
-  Typography,
-  Box,
-} from "@mui/material";
+import { TextField, Button, MenuItem, Select, FormControl, InputLabel, Checkbox, ListItemText, OutlinedInput, Typography } from "@mui/material";
 import { AuthContext } from "../../context/auth.context";
 import UserCard from "../../components/Cards/UserCard";
 import axios from "axios";
@@ -124,7 +112,7 @@ const NewPost = () => {
             ))}
           </Select>
         </FormControl>
-        <Button type="submit" variant="contained" color="primary" fullWidth>
+        <Button type="submit" variant="contained" color="primary">
           Publish
         </Button>
         {errorMessage && <Typography color="error">{errorMessage}</Typography>}

@@ -42,6 +42,10 @@ function PostCard({ post }) {
             {new Date(post.createdAt).toLocaleDateString()}
           </Typography>
         </Box>
+        <Typography variant="body2" color="text.secondary" textAlign="left">
+            {post.user.category}
+        </Typography>
+        <Divider sx={{ my: 2 }} />
         <Typography
           gutterBottom
           variant="h6"

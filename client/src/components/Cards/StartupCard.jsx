@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
-import { Box, Chip, Divider, IconButton } from "@mui/material";
+import { Box, Chip, Divider, IconButton, Link } from "@mui/material";
 
 function StartupCard({ user }) {
   if (!user) {
@@ -35,9 +35,9 @@ function StartupCard({ user }) {
           alignItems="center"
           mb={1}
         >
-          <Typography variant="body2" color="text.secondary">
-            {user.name}
-          </Typography>
+          <Link href={user.siteUrl} target="_blank" rel="noopener noreferrer" underline="none">
+            <Typography>{user.name}</Typography>
+          </Link>
           <Typography variant="body2" color="text.secondary">
             {formattedDate}
           </Typography>

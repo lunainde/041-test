@@ -13,6 +13,9 @@ import NewPost from './pages/PostsPage/NewPost';
 import StartupsPage from "./pages/StartupsPage/StartupsPage";
 import ArticlePage from "./pages/ArticlePage/ArticlePage"
 import Footer from "./components/Footer/Footer";
+import EditPost from './pages/PostsPage/EditPost';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+
 function App() {
   return (
     <div className="App">
@@ -26,6 +29,8 @@ function App() {
         <Route path="/new-post" element={<IsPrivate><NewPost /></IsPrivate>} />
         <Route path="/startups" element={<IsPrivate><StartupsPage/></IsPrivate>} />
         <Route path="/posts/:postId" element={ <IsPrivate><ArticlePage/></IsPrivate>} />
+        <Route path="/posts/edit/:postId" element={<IsPrivate><EditPost /></IsPrivate>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     <Footer/>
     </div>

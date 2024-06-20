@@ -1,5 +1,14 @@
 //client/src/components/Menu/Menu.jsx
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./Menu.css";
+import SquareIcon from "@mui/icons-material/Square";
+import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
+import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
+import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
+import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
+import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
+import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 import {
   Button,
   Drawer,
@@ -12,15 +21,6 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-import "./Menu.css";
-import SquareIcon from "@mui/icons-material/Square";
-import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
-import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
-import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
-import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
-import FeedbackOutlinedIcon from "@mui/icons-material/FeedbackOutlined";
-import WorkOutlineOutlinedIcon from "@mui/icons-material/WorkOutlineOutlined";
 
 const menuItems = [
   { text: "Home", icon: <SquareIcon />, link: "/" },

@@ -63,7 +63,6 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderColor: '#222222', 
-          borderWidth: '1px', 
         },
       },
     },

@@ -4,11 +4,11 @@ import React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import PublicIcon from '@mui/icons-material/Public';
 import SquareIcon from '@mui/icons-material/Square';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useLocation } from 'react-router-dom';
 import './Header.css'; 
+import EditNoteOutlinedIcon from "@mui/icons-material/EditNoteOutlined";
 
 function BreadcrumbsWithIcon() {
   const location = useLocation();
@@ -26,13 +26,13 @@ function BreadcrumbsWithIcon() {
 
         return last ? (
           <Typography color="textPrimary" key={to} sx={{ display: 'flex', alignItems: 'center' }}>
-            {index === 1 ? <PublicIcon sx={{ mr: 0.5 }} /> : null}
+            {index === 1 ? <EditNoteOutlinedIcon sx={{ mr: 0.5 }} /> : null}
             {index === 2 ? <AccountCircleIcon sx={{ mr: 0.5 }} /> : null}
             {value}
           </Typography>
         ) : (
           <Link color="inherit" href={to} key={to} sx={{ display: 'flex', alignItems: 'center' }}>
-            {index === 0 ? <PublicIcon sx={{ mr: 0.5 }} /> : null}
+            {index === 0 ? <EditNoteOutlinedIcon sx={{ mr: 0.5 }} /> : null}
             {index === 1 ? <AccountCircleIcon sx={{ mr: 0.5 }} /> : null}
             {value}
           </Link>

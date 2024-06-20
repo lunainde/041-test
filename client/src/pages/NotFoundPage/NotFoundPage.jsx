@@ -1,13 +1,10 @@
-//client/src/pages/NotFoundPage
+//client/src/pages/NotFoundPage/NotFoundPage.jsx
 import "./NotFoundPage.css";
-
 function NotFoundPage() {
   return (
-    <div>
-      <h1>Page Not Found</h1>
-      <p>This page doesn't seem to exist</p>
+     <div className="not-found-container">
+        <h1>No fossil-fuel projects here_</h1>
     </div>
   );
 }
-
 export default NotFoundPage;

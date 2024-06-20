@@ -11,7 +11,6 @@ import {
   Checkbox,
   ListItemText,
   OutlinedInput,
-  Avatar,
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../../services/auth.service";
@@ -72,9 +71,8 @@ function SignupPage() {
   };
 
   return (
-    <div className="SignupPage">
+    <div className="SignupPage center">
       <div className="left-column">
-        <Avatar className="user-avatar" />
         <h1>Happy to have you here!</h1>
         <p>Let's join forces for a better tomorrow.</p>
       </div>
@@ -118,15 +116,15 @@ function SignupPage() {
                 renderValue={(selected) => selected.join(", ")}
               >
                 {[
-                  "building",
-                  "carbon",
-                  "energy",
-                  "food",
-                  "greentech",
-                  "investment",
-                  "nature-based",
-                  "refi",
-                  "transport",
+                  "Building",
+                  "Carbon",
+                  "Energy",
+                  "Food",
+                  "Greentech",
+                  "Investment",
+                  "Nature-Based",
+                  "ReFi",
+                  "Transport",
                 ].map((tag) => (
                   <MenuItem key={tag} value={tag}>
                     <Checkbox checked={tags.indexOf(tag) > -1} />
@@ -146,7 +144,7 @@ function SignupPage() {
               variant="outlined"
             />
             <TextField
-              label="Headline"
+              label="Tagline"
               type="text"
               name="headline"
               value={headline}
@@ -207,7 +205,7 @@ function SignupPage() {
               variant="outlined"
             />
             <Button type="submit" variant="contained" color="primary" fullWidth>
-              Sign Up
+              SIGN UP
             </Button>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <p>Already have an account?</p>
